@@ -54,11 +54,11 @@ const getEquities = async () => {
     // the nodeList returned from executing 'data' is converted into an array of objects, with array elements having one 'key:value' property each
     // the array is then returned to the function that called it
     return Array.from(data).map( (el, pos) => {
-      if ( pos > 0 ){
-      const name = el.querySelector('td:nth-child(2)').innerText.trim();
-      const openingPrice = el.querySelector('td:nth-child(3)').innerText.trim();
-      const closingPrice = el.querySelector('td:nth-child(4)').innerText.trim();
-      const tradeVolume = el.querySelector('td:nth-child(5)').innerText.trim();
+      if ( pos > 3 ){
+      const name = el.querySelector('td:nth-child(1)').innerText.trim();
+      const openingPrice = el.querySelector('td:nth-child(2)').innerText.trim();
+      const closingPrice = el.querySelector('td:nth-child(3)').innerText.trim();
+      const tradeVolume = el.querySelector('td:nth-child(4)').innerText.trim();
 
       return { currentDate, name, openingPrice, closingPrice, tradeVolume }
     } else return
@@ -76,7 +76,7 @@ const getEquities = async () => {
 // then append a CSV file with the returned data 
 // then save the returned data in a JSON file
 const equities = getEquities().then( arr => {
-  const value = arr.filter( el => el !== null).filter( el => el.name);
+  const value = arr.filter( el => el !== null).filter( el => el.closingPrice);
   console.log(value);
 
   // save the scrapped data to a JSON file

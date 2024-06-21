@@ -3,3 +3,4 @@ node_modules/
 test/
 test_db/
 copy.js
+copySearch.js
